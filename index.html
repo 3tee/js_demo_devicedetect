@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8" />
+		<meta name="renderer" content="webkit" />
+		<script type="text/javascript" src="js/cn.tee3.avd-2.5.0.0.min.js?20170621141422"></script>
+		<title>设备检测Demo</title>
+	</head>
+
+	<body>
+		<div style="text-align: center;" id="detectDiv">
+			<table align="center" style="border: 1px solid black;" id="checkInfoTable">
+				<thead>
+					<td colspan="5"><b>设备检测</b></td>
+				</thead>
+				<tbody>
+					<tr>
+						<td colspan="2" style="border-top: 1px solid black;border-right: 1px solid black;width: 350px;"><b>视频相关</b></td>
+						<td colspan="2" style="border-top: 1px solid black;border-right: 1px solid black;width: 350px;"><b>音频相关</b></td>
+						<td style="border-top: 1px solid black;"><b>检测按钮</b></td>
+					</tr>
+					<tr>
+						<td style="border-top: 1px solid black;border-right: 1px solid black;width: 120px;">
+							有无视频设备
+						</td>
+						<td style="border-top: 1px solid black;border-right: 1px solid black;width: 230px;" id="hasVideo">
+							
+						</td>
+						<td style="border-top: 1px solid black;border-right: 1px solid black;width: 120px;">
+							有无音频设备
+						</td>
+						<td style="border-top: 1px solid black;border-right: 1px solid black;width: 230px;" id="hasAudio">
+							
+						</td>
+						<td style="border-top: 1px solid black;">
+							<input type="button" value="检测是否有设备" onclick="checkHasDevice();" />
+						</td>
+					</tr>
+					<tr>
+						<td style="border-top: 1px solid black;border-right: 1px solid black;width: 120px;">
+							视频设备列表
+						</td>
+						<td style="border-top: 1px solid black;border-right: 1px solid black;width: 230px;">
+							<select id="videoList" onchange="changeVideo()" style="display: none;">
+							</select>
+						</td>
+						<td style="border-top: 1px solid black;border-right: 1px solid black;width: 120px;">
+							音频设备列表
+						</td>
+						<td style="border-top: 1px solid black;border-right: 1px solid black;width: 230px;">
+							<select id="audioList" onchange="changeAudio()" style="display: none;">
+							</select>
+						</td>
+						<td style="border-top: 1px solid black;">
+							<input type="button" value="获取设备列表" onclick="getDeviceList();" />
+							<br>
+							<input type="button" value="更新设备列表" onclick="refreshDevice();" />
+							<br>
+						</td>
+					</tr>
+					<tr>
+						<td colspan="2" style="border-top: 1px solid black;border-right: 1px solid black;">
+							<video id="checkVideo" autoplay style="width: 300px; height: 200px;"></video>
+						</td>
+						<td colspan="2" style="border-top: 1px solid black;border-right: 1px solid black;">
+							<audio id="checkAudio" autoplay></audio>
+							<br>
+							<span id="audioLevel"></span>
+						</td>
+						<td style="border-top: 1px solid black;">
+							<input type="button" value="检测视频打开" onclick="checkOpenVideo();" />
+							<br>
+							<input type="button" value="检测视频关闭" onclick="checkCloseVideo();" />
+							<br>
+							<br>
+							<input type="button" value="检测音频打开" onclick="checkOpenAudio();" />
+							<br>
+							<input type="button" value="检测音频关闭" onclick="checkCloseAudio();" />
+							<br>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+		<script type="text/javascript" src="js/device_detect.js"></script>
+	</body>
+
+</html>
