@@ -44,9 +44,6 @@ function showDevices(deviceObject) {
 	videoList.innerHTML = null;//清空list
 	audioList.innerHTML = null;
 	
-	videoList.style.display = "inline";//显示下拉框
-	audioList.style.display = "inline";
-	
 	var video = deviceObject.video;//video对象，key value分别是deviceId和deviceName
 	var audio = deviceObject.audio;//audio对象，key value分别是deviceId和deviceName
 	for(var key in video) {
@@ -62,14 +59,21 @@ function showDevices(deviceObject) {
 		option.text = audio[key];
 		audioList.appendChild(option);
 	}
+	
+	if(videoList.length > 0){
+		videoList.style.display = "inline";//存在摄像头，显示下拉框
+	}
+	if(audioList.length > 0){
+		audioList.style.display = "inline";
+	}
 }
 
 function changeVideo() {//checkCloseVideo，此函数会关闭之前最后一次打开的video流
-	avdEngine.checkCloseVideo();//关闭流，否则打开另一路流以后无法关闭
+	checkCloseVideo();//关闭流，否则打开另一路流以后无法关闭
 }
 
 function changeAudio() {//checkCloseAudio，此函数会关闭之前最后一次打开的audo流
-	avdEngine.checkCloseAudio();//关闭流，否则打开另一路流以后无法关闭
+	checkCloseAudio();//关闭流，否则打开另一路流以后无法关闭
 }
 
 function refreshDevice() {//更新设备，再调用一次getDeviceObject即可
@@ -101,6 +105,7 @@ function checkOpenAudio() {//音频打开
 function showAudio(stream) {
 	attachMediaStream(checkAudio, stream);
 	if(stream) {
+		localLevel.style.display = 'inline';
 		var localCollector = new LocalStatsCollector(stream, 1000, showAudioLevel);//获取音量值，showAudioLevel函数是callback
 		localCollector.start();
 	}
@@ -113,9 +118,7 @@ function showAudioLevel(audioLevel) {//显示音量值
 function checkCloseAudio() {//音频关闭
 	avdEngine.checkCloseAudio();
 	attachMediaStream(checkAudio, null);//页面上清空audio元素
-	setTimeout(function(){
-		localLevel.innerHTML = null;
-	}, 1000);//音量值函数不会立即停止，所以设置延时把页面清空
+	localLevel.style.display = 'none';
 }
 
 
